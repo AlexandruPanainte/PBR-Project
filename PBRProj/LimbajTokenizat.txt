@@ -1,0 +1,1 @@
+[('Prima', 'NNP'), ('propozitie', 'NN'), ('trei', 'NN'), ('cuvinte', 'NN'), (',', ','), ('noi', 'RB'), (',', ','), ('punct', 'NN')]
