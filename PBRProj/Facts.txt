@@ -1,0 +1,5 @@
+(assert (Acesta NNP))
+(assert (este NN))
+(assert (un JJ))
+(assert (nou NN))
+(assert (text NN))

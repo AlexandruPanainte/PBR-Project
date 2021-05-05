@@ -1,5 +1,6 @@
 import nltk
-def UpdateGrammar(text,limbaj,limbajTokenizat):
+import json
+def UpdateGrammar(text,limbaj,limbajTokenizat,Facts):
     #Punem textul din fisierul limbaj intr-un string
     with open(limbaj,"r") as string:
         data = string.read().replace("\n"," ")
@@ -7,7 +8,6 @@ def UpdateGrammar(text,limbaj,limbajTokenizat):
     #dataDictionary = eval(str(data))
     # Transformam textul intr-o lista de cuvinte
     cuvinteDinText = text.split()
-    string= str(data)
     # Verificam pentru fiecare cuvant din textul dat ca input
     # daca este in lista noastra de cuvinte
     for word in cuvinteDinText:
@@ -27,8 +27,14 @@ def UpdateGrammar(text,limbaj,limbajTokenizat):
     # Dam override la fisierul limbajTokenizat cu actualul text tokenizat
     with open(limbajTokenizat, "w") as limbaj:
         limbaj.write(str(tagged))
+    #Transformam limbajul tokenizat in fact-uri clips si le adaugam intr-un fisier "Facts"
+    with open(Facts,"w") as string:
+        for element in tagged:
+            text = "(assert (" + element[0] + " " + element[1]+"))"
+            string.write(text + "\n")
 
 # Pentru verificarea functionalitatii recomand sa se stearga toate datele din
 # limbaj si limbajTokenizat iar apoi sa se apeleze de mai multe ori functia
 
-UpdateGrammar(", , punct ","Limbaj.txt","LimbajTokenizat.txt")
+
+UpdateGrammar("Acesta este un nou text","Limbaj.txt","LimbajTokenizat.txt","Facts.txt")
