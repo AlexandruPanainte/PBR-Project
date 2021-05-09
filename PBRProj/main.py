@@ -43,5 +43,5 @@ def UpdateGrammar(text,limbaj,limbajTokenizat,Facts):
 # limbaj si limbajTokenizat iar apoi sa se apeleze de mai multe ori functia
 
 
-UpdateGrammar("Acesta este un nou text","Limbaj.txt","LimbajTokenizat.txt","Facts.txt")
+UpdateGrammar("Alt input test","Limbaj.txt","LimbajTokenizat.txt","Facts.txt")
 ProvideText("Alt input test","TextInput.txt")

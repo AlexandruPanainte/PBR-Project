@@ -1,1 +1,1 @@
-[('Acesta', 'NNP'), ('este', 'NN'), ('un', 'JJ'), ('nou', 'NN'), ('text', 'NN')]
+[('Acesta', 'NNP'), ('este', 'NN'), ('un', 'JJ'), ('nou', 'JJ'), ('text', 'NN'), ('Alt', 'NNP'), ('input', 'NN'), ('test', 'NN')]
