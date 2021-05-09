@@ -1,5 +1,7 @@
 import nltk
 import json
+#Punem textul de input intr-un fisier separat pentru
+#a putea fi vazut/modificat in CLIPS
 def ProvideText(text,TextInput):
     with open(TextInput,"w")as textInput:
         textInput.write(text)
