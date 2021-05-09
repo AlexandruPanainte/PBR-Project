@@ -1,5 +1,9 @@
 import nltk
 import json
+def ProvideText(text,TextInput):
+    with open(TextInput,"w")as textInput:
+        textInput.write(text)
+
 def UpdateGrammar(text,limbaj,limbajTokenizat,Facts):
     #Punem textul din fisierul limbaj intr-un string
     with open(limbaj,"r") as string:
@@ -38,3 +42,4 @@ def UpdateGrammar(text,limbaj,limbajTokenizat,Facts):
 
 
 UpdateGrammar("Acesta este un nou text","Limbaj.txt","LimbajTokenizat.txt","Facts.txt")
+ProvideText("Alt input test","TextInput.txt")
