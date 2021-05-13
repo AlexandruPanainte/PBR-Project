@@ -1,0 +1,2 @@
+(assert (Alt NNP))
+(assert (input NN))
