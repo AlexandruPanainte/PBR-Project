@@ -70,5 +70,6 @@ def secondFuncitonality(text,limbaj,limbajTokenizat, FactsVerify):
 # limbaj si limbajTokenizat iar apoi sa se apeleze de mai multe ori functia
 
 
-UpdateGrammar("Alt input , test","Limbaj.txt","LimbajTokenizat.txt","FactsUpdate.txt")
-secondFuncitonality("Alt input","Limbaj.txt","LimbajTokenizat.txt","FactsVerify.txt")
+UpdateGrammar("Test de verificare la misto","Limbaj.txt","LimbajTokenizat.txt","FactsUpdate.txt")
+secondFuncitonality("Test de verificare la misto","Limbaj.txt","LimbajTokenizat.txt","FactsVerify.txt")
+ProvideText("Test de verificare la misto","TextInput.txt")
