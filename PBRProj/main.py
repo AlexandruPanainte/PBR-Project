@@ -1,5 +1,6 @@
 import nltk
 import json
+import clips
 #Punem textul de input intr-un fisier separat pentru
 #a putea fi vazut/modificat in CLIPS
 def ProvideText(text,TextInput):
@@ -64,12 +65,68 @@ def secondFuncitonality(text,limbaj,limbajTokenizat, FactsVerify):
         for element in tagged:
             text = "(assert (" + element[0] + " " + element[1]+"))"
             string.write(text + "\n")
+def clipsImplementation():
+    env = clips.Environment()
 
+    template_string = """ (deftemplate translation
+       (multislot text (type STRING))
+       (multislot tokens)
+       (multislot output)
+       (slot complete (default NO))
+    )"""
 
-# Pentru verificarea functionalitatii recomand sa se stearga toate datele din
-# limbaj si limbajTokenizat iar apoi sa se apeleze de mai multe ori functia
+    env.build(template_string)
+    template = env.find_template('translation')
+
+    rule1 = """
+    (defrule get_input
+       =>
+       (printout t "Input: ")
+       (bind ?text (readline))
+       (assert (translation (text ?text)
+                            (tokens (explode$ ?text)))))
+
+    """
+    env.build(rule1)
+
+    rule2 = """
+    (defrule apply_rule
+       ?t <- (translation (tokens $?tokens $?rest)
+                          (output $?output))
+       (regula ?replacement $?tokens)
+       =>
+       (modify ?t (tokens $?rest)
+                  (output $?output ?replacement))
+    )
+    """
+    env.build(rule2)
+
+    rule3 = """
+    (defrule success
+       ?t <- (translation (tokens)
+                          (complete NO))
+       =>
+       (modify ?t (complete YES))
+    )
+    """
+    env.build(rule3)
+
+    rule4 = """
+    (defrule print_results
+       ?t <- (translation (complete ?complete)
+                          (tokens $?tokens)
+                          (output $?output))
+       =>
+       (printout t ?complete " " (implode$ (create$ ?output ?tokens)) crlf))
+    """
+    env.build(rule4)
+    for rule4 in env.rules():
+        print(rule4)
+
+    env.run()
 
 
 UpdateGrammar("Test de verificare la misto","Limbaj.txt","LimbajTokenizat.txt","FactsUpdate.txt")
 secondFuncitonality("Test de verificare la misto","Limbaj.txt","LimbajTokenizat.txt","FactsVerify.txt")
 ProvideText("Test de verificare la misto","TextInput.txt")
+clipsImplementation()
